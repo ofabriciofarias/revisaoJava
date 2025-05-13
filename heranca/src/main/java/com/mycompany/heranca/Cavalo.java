@@ -8,17 +8,13 @@ package com.mycompany.heranca;
  *
  * @author Fabricio
  */
-// Subclasse
-public class Cachorro extends Animal {
-    void latir() {
-        System.out.println(nome + " está latindo: au au!");
-    }
-    
-     @Override
-    void emitirSom() {
-        System.out.println("Latido: au au!");
+public class Cavalo extends Animal{
+    String tipo = "Cavalo";
+
+    @Override
+    void mostrarTipo() {
+        System.out.println("Tipo filho: " + tipo);
+        System.out.println("Tipo pai: " + super.tipo); // acessa o atributo da superclasse
     }
 }
-
-
 
