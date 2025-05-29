@@ -15,6 +15,11 @@ public class ContaBancaria {
     public double getSaldo() {
         return saldo;
     }
+    
+    //Setter: adiciona saldo diretamente
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
+    }
 
     // Setter: permite modificar o saldo, com validação
     public void depositar(double valor) {
