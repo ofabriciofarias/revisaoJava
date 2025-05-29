@@ -19,3 +19,4 @@ public class Lobo extends Animal{
         return "Auuuu!";
     }   
 }
+
