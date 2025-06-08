@@ -11,3 +11,4 @@ package com.mycompany.padraoabstractfactory1;
 public interface Menu {
     void montar();
 }
+

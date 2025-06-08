@@ -19,5 +19,6 @@ public class LinuxFactory implements GUIFactory{
     public Menu criarMenu() {
         return new MenuLinux();
     }
-    
 }
+
+

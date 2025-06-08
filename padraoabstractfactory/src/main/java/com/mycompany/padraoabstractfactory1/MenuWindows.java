@@ -13,6 +13,6 @@ public class MenuWindows implements Menu{
     @Override
     public void montar() {
         System.out.println("Montando menu estilo Windows");
-    }
-    
+    }  
 }
+

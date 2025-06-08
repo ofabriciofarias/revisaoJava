@@ -25,3 +25,4 @@ public class AbstractFactoryTeste {
         app.renderizar();
     }
 }
+

@@ -18,6 +18,7 @@ public class WindowsFactory implements GUIFactory{
     @Override
     public Menu criarMenu() {
         return new MenuWindows();
-    }
-    
+    }   
 }
+
+

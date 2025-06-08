@@ -12,3 +12,4 @@ public interface GUIFactory {
     Botao criarBotao();
     Menu criarMenu();
 }
+
