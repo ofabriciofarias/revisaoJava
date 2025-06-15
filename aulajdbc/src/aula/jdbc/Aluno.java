@@ -7,12 +7,17 @@ package aula.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Aluno {
     
     private int id;
     private String nome, endereco, email, curso;
+    
+    public Aluno(){}
     
     public Aluno(String nome, String endereco, 
             String email, String curso){
@@ -23,11 +28,11 @@ public class Aluno {
         this.curso = curso;
     }
     
-    public static void inserirAluno(Aluno a){
-        String nome = a.getNome();
-        String endereco = a.getEndereco();
-        String email = a.getEmail();
-        String curso = a.getCurso();        
+    public void inserirAluno(){
+        String nome = this.getNome();
+        String endereco = this.getEndereco();
+        String email = this.getEmail();
+        String curso = this.getCurso();        
 
         String sql = "INSERT INTO alunos " 
                 + "(nome, endereco, email, curso) VALUES "
@@ -55,7 +60,83 @@ public class Aluno {
                 System.out.println("Erro: " + ex);
         }
     }
-
+    
+     public static List<Aluno> lerTodosAlunos(){
+        String sql = "SELECT * FROM alunos";
+        
+        List<Aluno> listAlunos = null;
+        
+        Connection conn = ConnectionFactory.getConexao();
+        
+        try{
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            listAlunos = new ArrayList<>();
+            
+            while(rs.next()){
+                Aluno aluno = new Aluno();
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setCurso(rs.getString("curso"));
+                listAlunos.add(aluno);
+            }
+            conn.close();
+            stmt.close();
+            rs.close();             
+        }catch(SQLException ex){
+            System.out.println("Erro: " + ex);
+        }
+        return listAlunos;
+    }
+          
+     public void atualizarAluno(){
+        //System.out.println("Atualizando Aluno");
+        String sql = "UPDATE alunos SET " 
+                + "nome = '" + this.getNome() + "',"
+                + "endereco = '" + this.getEndereco() + "',"
+                + "email = '" + this.getEmail() + "',"
+                + "curso = '" + this.getCurso() + "'"
+                + "WHERE id = " + this.getId();
+        
+        Connection conn = ConnectionFactory.getConexao();
+        
+        try{
+            Statement stmt = conn.createStatement();
+            int resultado = stmt.executeUpdate(sql);
+            if(resultado != 0){
+                System.out.println("Aluno atualizado"
+                        + " com sucesso!");
+            }
+            stmt.close();
+            conn.close();
+        }catch(SQLException ex){
+                System.out.println("Erro: " + ex);
+        }
+    }
+    
+    public void excluirAluno(){
+        String sql = "DELETE FROM alunos WHERE id = " + this.id;
+        
+        Connection conn = ConnectionFactory.getConexao();
+        
+        try{
+            Statement stmt = conn.createStatement();
+            int resultado = stmt.executeUpdate(sql);
+            
+            if(resultado != 0){
+                System.out.println("Aluno Excluido "
+                        + "com sucesso");
+            }
+            
+            conn.close();
+            stmt.close();
+        }catch(SQLException ex){
+            System.out.println("Erro: " + ex);
+        }
+    }
+    
     public int getId() {
         return id;
     }

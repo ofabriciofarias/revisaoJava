@@ -4,14 +4,20 @@
  */
 package aula.jdbc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author labex
  */
 public class Aulajdbc {
     public static void main(String [] args){
-        Aluno a = new Aluno("João", "Coronel Raimundo Leão", "jjao@ufpa.br", "Sistemas de Informação");
-        Aluno.inserirAluno(a);        
+                
+        Aluno a = new Aluno();
+        a.setId(5);
+        a.excluirAluno();
     }
 }
+
 
