@@ -29,17 +29,13 @@ public class Aluno {
     }
     
     public void inserirAluno(){
-        String nome = this.getNome();
-        String endereco = this.getEndereco();
-        String email = this.getEmail();
-        String curso = this.getCurso();        
 
         String sql = "INSERT INTO alunos " 
                 + "(nome, endereco, email, curso) VALUES "
-                + "('" + nome + "',"
-                + "'" + endereco + "', "
-                + "'" + email + "', "
-                + "'" + curso + "')";
+                + "('" + this.getNome() + "',"
+                + "'" + this.getEndereco() + "', "
+                + "'" + this.getEmail() + "', "
+                + "'" + this.getCurso() + "')";
         System.out.println(sql);
         
         Connection conn = ConnectionFactory.getConexao();

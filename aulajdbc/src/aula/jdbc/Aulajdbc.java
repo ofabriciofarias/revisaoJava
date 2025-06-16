@@ -14,9 +14,14 @@ import java.util.List;
 public class Aulajdbc {
     public static void main(String [] args){
                 
-        Aluno a = new Aluno();
-        a.setId(5);
-        a.excluirAluno();
+        Aluno a = new Aluno("Ray", "Juaba Station Masachusets Texas, 938", "rayban@ufpa.br", "Sistemas de Informação");
+        a.setId(8);
+        
+        a.atualizarAluno();
+        //a.inserirAluno();
+        
+        //a.setId(5);
+        //a.excluirAluno();
     }
 }
 
