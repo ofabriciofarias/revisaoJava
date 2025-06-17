@@ -22,7 +22,7 @@ public class MenuView extends JFrame {
 
     private JButton cadastrarButton;
     private JButton consultarButton;
-    private JButton visualizarButton;
+    private JButton fecharButton;
 
     public MenuView() {
         super("Menu Principal");
@@ -34,12 +34,12 @@ public class MenuView extends JFrame {
 
         cadastrarButton = new JButton("Cadastrar");
         consultarButton = new JButton("Consultar");
-        visualizarButton = new JButton("Visualizar");
+        fecharButton = new JButton("Finalizar");
 
         // Adiciona os botões
         add(cadastrarButton);
         add(consultarButton);
-        add(visualizarButton);
+        add(fecharButton);
 
         // Eventos já prontos (você implementará os controllers)
         cadastrarButton.addActionListener(new ActionListener() {
@@ -53,16 +53,15 @@ public class MenuView extends JFrame {
         consultarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsultaController controller = new ConsultaController();
+                ConsultaController controller = new ConsultaController(MenuView.this);
                // controller.executarConsulta();
             }
         });
 
-        visualizarButton.addActionListener(new ActionListener() {
+        fecharButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VisualizacaoController controller = new VisualizacaoController();
-               // controller.exibirDados();
+                System.exit(0); // Encerra totalmente o programa
             }
         });
 
