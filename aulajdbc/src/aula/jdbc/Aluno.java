@@ -86,7 +86,38 @@ public class Aluno {
         }
         return listAlunos;
     }
-          
+        
+     public static List<Aluno> lerTodosAlunos(String nome){
+        String sql = "SELECT * FROM alunos WHERE nome = " + nome;
+        System.out.println(sql);
+
+        List<Aluno> listAlunos = null;
+        
+        Connection conn = ConnectionFactory.getConexao();
+        
+        try{
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            listAlunos = new ArrayList<>();
+            
+            while(rs.next()){
+                Aluno aluno = new Aluno();
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setCurso(rs.getString("curso"));
+                listAlunos.add(aluno);
+            }
+            conn.close();
+            stmt.close();
+            rs.close();             
+        }catch(SQLException ex){
+            System.out.println("Erro: " + ex);
+        }
+        return listAlunos;
+    }
+     
      public void atualizarAluno(){
         //System.out.println("Atualizando Aluno");
         String sql = "UPDATE alunos SET " 
